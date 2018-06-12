@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Check if HELLO env-var is set
+if [ ! -z $HELLO ]
+then
+  echo "HELLO=$HELLO defined"
+else
+  echo "HELLO not defined"
+fi
+
+# One liner setter to required env var, also shows how to set value if not set
+var=$( [[ ! -z $HELLO ]] && echo $HELLO || echo "myVal" )
+echo "var is now \"$var\""
