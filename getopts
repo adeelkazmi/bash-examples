@@ -1,0 +1,70 @@
+#!/bin/bash
+# Specify all the options that you require alongside as well as the short options
+# colon after short or long option denotes that it has an argument
+# Known option list is separated from unknown options using --
+OPTS=$(getopt -o vhns: --long verbose,dry-run,help,stack-size: -n "$(basename "$0")" -- "$@")
+
+# Usage function
+Usage()
+{
+  echo "Usage: $(basename ${BASH_SOURCE[0]}) [OPTIONS]"
+  echo " Options:"
+  # Just do a simple grep of this file so we can keep the command with the comment together
+  grep ". )\ #" ${BASH_SOURCE[0]} | sed 's/# //' | awk -F ")" '{ printf "%-25s %s\n", $1, $2 }'
+  exit 0
+}
+
+if [ $? != 0 ] ; then echo "Failed parsing options." >&2 ; exit 1 ; fi
+
+echo "$OPTS"
+
+# Initialise the options
+eval set -- "$OPTS"
+
+VERBOSE=false
+HELP=false
+DRY_RUN=false
+STACK_SIZE=0
+
+# Go through all the options
+while true;
+do
+  case "$1" in
+    -v|--verbose ) # Verbose option
+      VERBOSE=true
+      shift
+      ;;
+
+    -h|--help ) # Help
+      HELP=true;
+      shift
+      Usage
+      ;;
+
+    -d|--dry-run ) # Dry Run
+      DRY_RUN=true;
+      shift
+      ;;
+
+    -s|--stack-size ) # Set the stack size
+      STACK_SIZE="$2";
+      shift 2
+      shift
+      ;;
+
+    -- )
+      shift
+      ;;
+
+    * )
+      echo "Unknown Option: $1"
+      break
+      ;;
+
+  esac
+done
+
+echo VERBOSE=$VERBOSE
+echo HELP=$HELP
+echo DRY_RUN=$DRY_RUN
+echo STACK_SIZE=$STACK_SIZE
