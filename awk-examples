@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Use ":" as column separator
+command="echo \"3: world\" | awk -F \":\" '{ print $1 }'"
+echo "$command:"
+eval $command
+echo
+
+# Only print rows with 1 in it
+list="
+  1: world
+  2: hello
+"
+command="echo \"$list\" | awk -F \":\" '/1/ { print $1 }'"
+echo "$command:"
+eval $command
+echo
+
