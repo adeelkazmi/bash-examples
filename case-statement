@@ -1,0 +1,26 @@
+#!/bin/bash
+case "$1" in
+  -v | --verbose ) # | is for OR
+    echo "Your option was -v or --verbose"
+    ;;
+
+  -h | --help )
+    echo "Your option was -h or --help"
+    ;; # Required to end this case
+
+  [a-z] | [A-Z] ) # lowercase or uppercase letters
+    echo "You entered a letter"
+    ;;
+
+  [0-9] ) # Numbers
+    echo "You entered a number"
+    ;;
+
+  ? ) # Special characters like $,%,& etc.
+    echo "You entered a special character"
+    ;;
+
+  * ) # Anything else
+    echo "Unknown Option: $1"
+    ;;
+esac
