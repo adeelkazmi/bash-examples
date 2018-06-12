@@ -1,0 +1,18 @@
+#!/bin/bash
+STRING_TABLE=(
+"This"
+"Is"
+"An Example"
+"Of A For Loop"
+"Around a Table of Strings"
+)
+
+STRING_TABLE_COUNT=${#STRING_TABLE[@]}
+
+for (( i=0; i < STRING_TABLE_COUNT; i=i+1 ))
+do
+  comment="${STRING_TABLE[i]}"
+  echo -n "$comment "
+done
+echo
+
