@@ -1,0 +1,5 @@
+#!/bin/bash
+# Various ways to find location and name of script
+echo "\${BASH_SOURCE[0]}=\"${BASH_SOURCE[0]}\""
+echo "basename=\"$(basename ${BASH_SOURCE[0]})\""
+echo "dirname=\"$(dirname ${BASH_SOURCE[0]})\""
