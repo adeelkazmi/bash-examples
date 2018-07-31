@@ -1,0 +1,36 @@
+#!/bin/bash
+
+num1=2
+num2=3
+
+# Add two other variables
+num3=$((num1 + num2))
+echo $num3
+
+# Add to current variable
+num3=$((num3 + num2))
+echo $num3
+
+# Add number
+num3=$((num3 + 10))
+echo $num3
+
+# Subtract
+num3=$((num3 - 8))
+echo $num3
+
+# Multiply
+num3=$((num3 * num3))
+echo $num3
+
+# Divide
+num3=$((num3 / 5 ))
+echo $num3
+
+# Remainder
+num3=$((num3 % 3 ))
+echo $num3
+
+# For more advanced and precise math, consider using bc
+num3=`echo "$num3 * 3.45" | bc -l`
+echo $num3
