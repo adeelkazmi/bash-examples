@@ -1,0 +1,44 @@
+#!/bin/bash
+FILE_TO_OPEN=README.md
+
+#################
+# WORD BY WORD
+#################
+echo "Reading word-by-word"
+WORDS=()
+for word in `cat $FILE_TO_OPEN`
+do
+  WORDS+=($word)
+done
+TOTAL_WORDS=${#WORDS[@]}
+
+echo "Print out each member of WORDS array:"
+for (( i=0; i<$TOTAL_WORDS; i=i+1))
+do
+  echo "$i: \"${WORDS[$i]}\""
+done
+echo
+echo "WORDS array: \"${WORDS[*]}\""
+echo
+
+#################
+# LINE BY LINE
+#################
+IFS=$'\n' # Ensures bash interprets new-line string literal
+echo "Reading line-by-line"
+LINES=()
+while read line
+do
+  LINES+=($line)
+done < $FILE_TO_OPEN
+TOTAL_LINES=${#LINES[@]}
+
+echo "Print out each member of LINES array:"
+for (( i=0; i<$TOTAL_LINES; i=i+1))
+do
+  echo "$i: \"${LINES[$i]}\""
+done
+echo
+echo "LINES array: \"${LINES[*]}\""
+echo
+
