@@ -8,3 +8,7 @@ var2=world
 
 # var1 is given 10 spaces before var2 is shown
 printf "$Blue%-10s$Clear %s\n" $var1 $var2
+
+# print number of spaces using a variable (using the *)
+spaces=20
+printf "%s%*s\n" "$var1" $spaces "$var2"
