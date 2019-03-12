@@ -7,3 +7,7 @@ then
 fi
 echo Your username is $userName
 
+echo -n "Adding -n 1 only waits for 1 char (i.e. disables the need for enter in y/n confirmations."
+read -p " Do you understand?" -n 1
+echo
+echo "Well Done :)"
