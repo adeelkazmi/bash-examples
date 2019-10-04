@@ -3,9 +3,11 @@ echo -n "\"-n\" means no new line at the end."
 echo " The next echo continues on same line"
 
 echo
+echo "Using the Enter/Return key will move on to the next line so please avoid that to see what the special characters will do"
+echo
 echo -n "This text will be overwritten. Continue? "
 read -p "" -n 1
-echo -e "\rUsing \"\\\r\" will overwrite the last output"
+echo -e "\rUsing \"\\\r\" will overwrite the last output     "
 
 echo
 echo -n "An entire line will not be deleted if it's not long enough. Continue? "
@@ -13,7 +15,10 @@ read -p "" -n 1
 echo -e "\rSee there's still characters to the right -->  "
 
 echo
-echo -en "You can delete an entire line by using a special character. Continue? \r"
+echo -en "You can delete an entire line by using the special character \"\\\\033[2K\". Continue? "
 read -p "" -n 1
 echo -en "\033[2K" # Delete everything on line regardless of cursor position
-echo -e "Everything Gone :)"
+echo -en "Everything Gone, but printing from previous position. Continue? "
+read -p "" -n 1
+echo -en "\033[2K"
+echo -e "\rEverything Gone using special char \"\\\\033[2K\" & at the start of line by using \"\\\r\" :)" # \r will take you to the start of the line
