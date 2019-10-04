@@ -1,0 +1,36 @@
+#!/bin/bash
+
+fullString="This is my full string"
+echo "fullString=\"$fullString\""
+
+# Function to search for a string
+SearchForString()
+{
+  searchString="$1"
+  echo -n "Search for \"${searchString}\": "
+  [[ $fullString == *"${searchString}"* ]] && echo "FOUND" || echo "NOT FOUND"
+}
+
+# Using a loop and a case statement to search for a string
+SearchForMultipleStrings()
+{
+  echo -n "Searching for"
+  for i in "$@"; do echo -n " \"$i\""; done
+  echo ":"
+  for searchString in "$@"
+  do
+    case "${fullString}" in
+      *${searchString}* )
+        echo "  \"$searchString\" Found!"
+        ;;
+
+      * )
+        echo "  \"$searchString\" Not Found!"
+        ;;
+    esac
+  done
+}
+
+SearchForString full
+SearchForString Hello
+SearchForMultipleStrings full Hello "my full"
