@@ -1,0 +1,14 @@
+#!/bin/bash
+
+VARS="
+  HELLO
+  WORLD
+  TOMORROW
+"
+
+for envVar in $VARS
+do
+  value="${!envVar}"
+  [ ! -z "$value" ] && echo $envVar=$value
+done
+
